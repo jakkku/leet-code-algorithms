@@ -46,8 +46,6 @@ var countBattleships = function(board) {
           compressVertical(x, y + 1);
           isHolding = false;
         }
-        
-        continue;
       }
     }
   }
