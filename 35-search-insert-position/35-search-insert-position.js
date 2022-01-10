@@ -19,9 +19,11 @@ var searchInsert = function(nums, target) {
     }
     
     const center = ~~((head + tail) / 2);
-    return nums[center] >= target
-      ? getPosition(nums, head, center, target)
-      : getPosition(nums, center, tail, target);
+    const nextArgs = nums[center] >= target
+      ? [nums, head, center, target]
+      : [nums, center, tail, target];
+    
+    return getPosition(...nextArgs);
   }
     
   return getPosition(nums, head, tail, target);
