@@ -11,39 +11,43 @@ var countBattleships = function(board) {
   let isHolding = false;
   let result = 0;
   
-  const checkVertical = (x, y) => {
-    if (y === col - 1) return;
+  const isVertical = (x, y) => {
+    if (y === col - 1) {
+      return false;
+    };
     
-    if (board[y + 1][x] === BODY) {
-      board[y + 1][x] = TAIL;
-      isHolding = false;
-    }
+    return board[y + 1][x] === BODY;
   } 
+  
+  const compressVertical = (x, y) => {
+    if (board[y][x] === EMPTY) return;
+    board[y][x] = EMPTY;
+    
+    if (y === col - 1) return;
+    return compressVertical(x, y + 1);
+  }
     
   for (let y = 0; y < col; y++) {
+    isHolding = false;
+    
     for (let x = 0; x < row; x++) {
       const target = board[y][x];
       
-      if (target === EMPTY && isHolding) {
+      if (target === EMPTY) {
         isHolding = false;
         continue;
-      }
+      };
       
-      if (target === TAIL) {
-        checkVertical(x, y);
-        continue;
-      }
-      
-      if (target === BODY) {
-        if (!isHolding) {
-          result++;
-          isHolding = true; 
-          checkVertical(x, y);
-        }
+      if (!isHolding) {
+        result++;
+        isHolding = true; 
         
-        if (x === row - 1) {
+        if (isVertical(x, y)) {
+          compressVertical(x, y + 1);
           isHolding = false;
         }
+        
+        continue;
       }
     }
   }
