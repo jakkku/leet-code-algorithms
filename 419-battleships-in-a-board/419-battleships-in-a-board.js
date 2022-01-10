@@ -5,7 +5,6 @@
 var countBattleships = function(board) {
   const EMPTY = '.';
   const BODY = 'X';
-  const TAIL = 'TAIL';
   const col = board.length;
   const row = board[0].length;
   let isHolding = false;
