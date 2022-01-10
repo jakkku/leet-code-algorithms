@@ -4,9 +4,6 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-  let head = 0;
-  let tail = nums.length - 1;
-  
   const getPosition = (nums, head, tail, target) => {
     if (tail - head <= 1) {
       if (target <= nums[head]) {
@@ -26,5 +23,5 @@ var searchInsert = function(nums, target) {
     return getPosition(...nextArgs);
   }
     
-  return getPosition(nums, head, tail, target);
+  return getPosition(nums, 0, nums.length - 1, target);
 };
