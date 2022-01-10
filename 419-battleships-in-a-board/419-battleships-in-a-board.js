@@ -38,14 +38,14 @@ var countBattleships = function(board) {
         continue;
       };
       
-      if (!isHolding) {
-        result++;
-        isHolding = true; 
-        
-        if (isVertical(x, y)) {
-          compressVertical(x, y + 1);
-          isHolding = false;
-        }
+      if (isHolding) continue;
+      
+      result++;
+      isHolding = true; 
+
+      if (isVertical(x, y)) {
+        compressVertical(x, y + 1);
+        isHolding = false;
       }
     }
   }
