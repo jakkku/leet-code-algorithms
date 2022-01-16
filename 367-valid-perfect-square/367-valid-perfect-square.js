@@ -3,17 +3,15 @@
  * @return {boolean}
  */
 var isPerfectSquare = function(num) {
-  if (num === 1) {
-    return true;
-  }
+  let target = 1;
   
-  for (let i = Math.floor(num / 2); i > 1; i--) {
-    if (i * i < num) {
-      return false;
-    }
-    
-    if (num === i * i) {
+  do {
+    if (target * target === num) {
       return true;
     }
-  }
+    
+    target++;
+  } while(target * target <= num)
+    
+    return false;
 };
