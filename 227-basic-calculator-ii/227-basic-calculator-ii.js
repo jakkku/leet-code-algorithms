@@ -10,21 +10,22 @@ var calculate = function(s) {
     '/': (a) => (b) => Math.floor(a/b),
   };
   
+  const calculate = (acc, val) => {
+    if (val in operators) {
+      return operators[val](parseInt(acc));
+    }
+    return acc(parseInt(val));
+  }
+  
   return s.split(/(?=[\+\-])|(?<=[\+\-])/g).map((chunk) => {
     if (chunk.length === 1) {
       return chunk;
     }
     
     return chunk.split(/(?=[\*\/])|(?<=[\*\/])/g).reduce((acc, val) => {
-      if (val === '*' | val === '/') {
-        return operators[val](acc);
-      }
-      return acc(val);
+      return calculate(acc, val);
     });
   }).reduce((acc, val) => {
-    if (val === '+' | val === '-') {
-      return operators[val](parseInt(acc));
-    }
-    return acc(parseInt(val));
+    return calculate(acc, val);
   });
 };
