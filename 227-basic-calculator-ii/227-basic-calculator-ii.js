@@ -25,6 +25,6 @@ var calculate = function(s) {
     if (val === '+' | val === '-') {
       return operators[val](parseInt(acc));
     }
-    return acc(+val);
+    return acc(parseInt(val));
   });
 };
