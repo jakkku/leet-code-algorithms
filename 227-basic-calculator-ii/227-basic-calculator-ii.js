@@ -11,7 +11,7 @@ var calculate = function(s) {
   };
   
   return s.split(/(?=[\+\-])|(?<=[\+\-])/g).map((chunk) => {
-    if (!chunk.includes('*') && !chunk.includes('/')) {
+    if (chunk.length === 1) {
       return chunk;
     }
     
