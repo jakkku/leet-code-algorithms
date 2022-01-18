@@ -23,7 +23,7 @@ var calculate = function(s) {
     });
   }).reduce((acc, val) => {
     if (val === '+' | val === '-') {
-      return operators[val](+acc);
+      return operators[val](parseInt(acc));
     }
     return acc(+val);
   });
