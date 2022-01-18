@@ -23,8 +23,8 @@ var calculate = function(s) {
     });
   }).reduce((acc, val) => {
     if (val === '+' | val === '-') {
-      return operators[val](Number(acc));
+      return operators[val](+acc);
     }
-    return acc(Number(val));
+    return acc(+val);
   });
 };
