@@ -21,7 +21,6 @@ var countBits = function(n) {
       
       if (!addMode) {
         dp.push(...result.slice(-dp.length));
-        
       }
     }
     
