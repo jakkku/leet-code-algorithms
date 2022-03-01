@@ -4,15 +4,15 @@
  */
 var minCostClimbingStairs = function(cost) {
   const dp = [];
-  for (let i = 0; i < cost.length; i++) {
-    if (i === 0 || i === 1) {
-      dp.push(cost[i]);
-      continue;
+  
+  cost.forEach((currCost, idx) => {
+    if (idx === 0 || idx === 1) {
+      dp.push(currCost);
+      return;
     }
     
-    const sum = cost[i] + Math.min(dp[i - 1], dp[i - 2]);
-    dp.push(sum);
-  }
+    dp.push(currCost + Math.min(dp[idx - 1], dp[idx - 2]));
+  });
   
   return Math.min(...dp.slice(-2));
 };
