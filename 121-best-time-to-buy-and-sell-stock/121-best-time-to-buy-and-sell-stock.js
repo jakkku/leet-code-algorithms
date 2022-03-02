@@ -3,22 +3,13 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-  const dp = [];
-
-  prices.map((price, idx, prices) => {
-    if (idx === 0) {
-      return -price;
-    }
-    return price - prices[idx - 1];
-  }).forEach((profit) => {
-    if (!dp.length) {
-      dp.push(profit);
-      return;
-    }
-    
-    const preProfit = dp.at(-1);
-    dp.push(preProfit > 0 ? preProfit + profit : profit);
-  });
+  let result = 0;
+  let curProfit = 0;
   
-  return Math.max(...dp, 0);
+  for (let i = 1; i < prices.length; i++) {
+    curProfit = Math.max(curProfit + prices[i] - prices[i - 1], 0);
+    result = Math.max(curProfit, result);
+  }
+  
+  return result;
 };
