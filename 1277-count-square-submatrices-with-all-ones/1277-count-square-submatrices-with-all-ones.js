@@ -9,7 +9,7 @@ var countSquares = function(matrix) {
     if (!val) return;
     
     if (!dp[0]) {
-      dp.push([]);
+      dp[0] = [];
     }
     
     dp[0].push([x, y]);
@@ -22,21 +22,17 @@ var countSquares = function(matrix) {
     if (!prevIndces) break;
     
     prevIndces.forEach(([x, y]) => {
-      let isSquare = true;
-      
       if (x + i > matrix[0].length || y + i > matrix.length) return;
       
       for (let j = 0; j < i; j++) {
         if (!matrix[y + i - 1][x + j] || !matrix[y + j][x + i - 1]) return;
       }
       
-      if (isSquare) {
-        if (!dp[i - 1]) {
-          dp[i - 1] = [];
-        }
-        
-        dp[i - 1].push([x, y]);
+      if (!dp[i - 1]) {
+        dp[i - 1] = [];
       }
+
+      dp[i - 1].push([x, y]);
     });
   }
   
