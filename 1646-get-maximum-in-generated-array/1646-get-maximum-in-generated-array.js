@@ -18,6 +18,5 @@ var getMaximumGenerated = function(n) {
     }
   }
   
-  console.log(dp);
   return Math.max(...dp);
 };
