@@ -9,6 +9,7 @@ var validPath = function(n, edges, source, destination) {
   if (!edges.length) return true;
   
   const vertices = {};
+  let isFound = false;
   
   edges.forEach(([from, to]) => {
     if (!vertices[from]) {
@@ -25,12 +26,13 @@ var validPath = function(n, edges, source, destination) {
   
   
   const findVertex = (sourceVertex, destination) => {
-    if (sourceVertex.isChecked) {
+    if (sourceVertex.isChecked || isFound) {
       return false;
     }
     
     if (sourceVertex.value === destination) {
-       return true;
+      isFound = true;
+      return true;
     }
     
     sourceVertex.isChecked = true;
